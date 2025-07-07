@@ -14,7 +14,7 @@ This project automatically:
 
 - Windows or Linux machine with internet access
 - Admin/root privileges
-- No need to pre-install VirtualBox or Vagrant — setup scripts handle it
+- VirtualBox 
 
 ## 💻 Quick Start
 

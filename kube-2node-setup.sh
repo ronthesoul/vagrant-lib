@@ -8,10 +8,7 @@
 source /etc/os-release
 
 main () {
-    wget https://download.virtualbox.org/virtualbox/7.0.18/virtualbox-7.0.18_7.0.18-162988~Debian~bookworm_amd64.deb
-    sudo apt install -y ./virtualbox-7.0.18_7.0.18-162988~Debian~bookworm_amd64.deb
-    rm virtualbox-7.0.18_7.0.18-162988~Debian~bookworm_amd64.deb
-
+    
     apt update
     distro_check_and_install git curl gnupg lsb-release
 
