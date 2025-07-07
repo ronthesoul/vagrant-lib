@@ -1,0 +1,31 @@
+VAGRANTFILE_API_VERSION = "2"
+VM_BOX = "ubuntu/jammy64"
+MASTER_IP = "192.168.56.10"
+NUM_NODES = (ENV['NODES'] || 1).to_i
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = VM_BOX
+  config.vm.boot_timeout = 600
+  config.ssh.forward_agent = false
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+  end
+
+  config.vm.define "kube-master" do |master|
+    master.vm.hostname = "kube-master"
+    master.vm.network "private_network", ip: MASTER_IP
+    master.vm.provision "shell", path: "provision.sh"
+    master.vm.provision "shell", path: "post-master-provision.sh"
+  end
+
+  (1..NUM_NODES).each do |i|
+    config.vm.define "kube-node#{i}" do |node|
+      node.vm.hostname = "kube-node#{i}"
+      node.vm.network "private_network", ip: "192.168.56.#{10 + i}"
+      node.vm.provision "shell", path: "provision.sh"
+      node.vm.provision "shell", path: "post-node-provision.sh"
+    end
+  end
+end
