@@ -51,6 +51,15 @@ For example:
 
 This helps you scale the lab based on your system's capacity.
 
+# Node worker declation
+```bash
+export NODE_COUNT=2
+```
+```powershell
+$env:NODE_COUNT = 2
+```
+> This allows you to scale the cluster based on your system's capacity.
+
 ### 🚀 Start the Cluster
 
 After running the script, navigate into the cloned project and run:
@@ -74,8 +83,7 @@ vagrant up
 To access the machines for debugging:
 
 ```bash
-vagrant ssh kube-master
-vagrant ssh kube-node-1
+ vagrant ssh $Vm -- -t "sudo -i"
 ```
 
 ## 📁 Project Structure
