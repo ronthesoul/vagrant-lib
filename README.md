@@ -53,10 +53,10 @@ This helps you scale the lab based on your system's capacity.
 
 # Node worker declation
 ```bash
-export NODE_COUNT=2
+export NODE_COUNT=2 #For bash
 ```
 ```powershell
-$env:NODE_COUNT = 2
+$env:NODE_COUNT = 2 #For powershell 
 ```
 > This allows you to scale the cluster based on your system's capacity.
 
